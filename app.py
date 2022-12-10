@@ -29,7 +29,7 @@ button = st.button("Choice!")
 
 
 
-if :button
+if button:
     selected_products = random.sample(products, len(products))
     total_price = 0
     for product in selected_products:
