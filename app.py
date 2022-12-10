@@ -1,17 +1,14 @@
-# 1. ライブラリをインポートする
 import requests
 from bs4 import BeautifulSoup
 import streamlit as st
 import random
 
-# 2. スクレイピングするWebサイトのURLを指定する
+
 url = "https://www.mcdonalds.co.jp/menu/"
 
-# 3. WebサイトからHTMLデータを取得し、適切な形式で保存する
 response = requests.get(url)
 soup = BeautifulSoup(response.text, "html.parser")
 
-# 4. 取得したHTMLデータを解析し、商品名と料金を抽出する
 lineup = [item.text for item in soup.find_all(class_="product-list-card-name font-bold mt-2 mb-2 mb-4:md")]
 price =  [item.text.replace("~","") for item in soup.find_all(class_="product-list-card-price-number text-2xl font-extrabold")] 
 products =[]
@@ -36,9 +33,13 @@ if button:
     selected_products = random.sample(products, len(products))
     total_price = 0
     for product in selected_products:
+        if total_price + product["price"] <= 1000:
+            total_price += product["price"]
+        else:
+            break
+    for product in selected_products:
         if total_price <= 0:
             break
-        st.write(f"- {product['name']}: {product['price']}円")
+        print(f"- {product['name']}: {product['price']}円")
         total_price -= product["price"]
-    st.write(f"合計金額: {total_price}円")
     
