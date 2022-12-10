@@ -35,11 +35,10 @@ button = st.button("Choice!")
 if button:
     selected_products = random.sample(products, len(products))
     total_price = 0
-    for product in products:
-        if total_price + product["price"] <= 1000:
-            selected_products.append(product)
-            total_price += product["price"]
     for product in selected_products:
+        if total_price <= 0:
+            break
         st.write(f"- {product['name']}: {product['price']}円")
+        total_price -= product["price"]
     st.write(f"合計金額: {total_price}円")
     
