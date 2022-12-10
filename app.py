@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import streamlit as st
 import random
 
-
 url = "https://www.mcdonalds.co.jp/menu/"
 
 response = requests.get(url)
@@ -29,7 +28,7 @@ button = st.button("Choice!")
 
 
 
-if button:
+if True:
     selected_products = random.sample(products, len(products))
     total_price = 0
     for product in selected_products:
@@ -40,6 +39,7 @@ if button:
     for product in selected_products:
         if total_price <= 0:
             break
-        st.write(f"- {product['name']}: {product['price']}円")
+        print(f"- {product['name']}: {product['price']}円")
         total_price -= product["price"]
+    print(f"合計金額: {total_price}円")
     
