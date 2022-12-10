@@ -20,16 +20,16 @@ for i in range(len(price)):
 
 
 
-st.sidebar.title("商品一覧")
-for product in products:
-    st.sidebar.markdown(f"- {product['name']}: {product['price']}円")
+#st.sidebar.title("商品一覧")
+#for product in products:
+#    st.sidebar.markdown(f"- {product['name']}: {product['price']}円")
 
 
-button = st.button("Choice!")
+#button = st.button("Choice!")
 
 
 
-if button:
+if True:
     selected_products = random.sample(products, len(products))
     total_price = 0
     for product in selected_products:
@@ -40,6 +40,6 @@ if button:
     for product in selected_products:
         if total_price <= 0:
             break
-        print(f"- {product['name']}: {product['price']}円")
+        st.write(f"- {product['name']}: {product['price']}円")
         total_price -= product["price"]
     
