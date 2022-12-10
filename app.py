@@ -17,7 +17,7 @@ price =  [item.text.replace("~","") for item in soup.find_all(class_="product-li
 products =[]
 
 for i in range(len(price)):
-    products.append({"name":lineup[i],"price":price[i]})
+    products.append({"name":lineup[i],"price":int(price[i])})
     
     
 
@@ -33,7 +33,7 @@ button = st.button("Choice!")
 
 
 if button:
-    selected_products = []
+    selected_products = random.sample(products, len(products))
     total_price = 0
     for product in products:
         if total_price + product["price"] <= 1000:
