@@ -36,10 +36,11 @@ if True:
             total_price += product["price"]
         else:
             break
+    total_price_display = total_price
     for product in selected_products:
         if total_price <= 0:
             break
-        print(f"- {product['name']}: {product['price']}円")
+        st.write(f"- {product['name']}: {product['price']}円")
         total_price -= product["price"]
-    print(f"合計金額: {total_price}円")
+    st.write(f"合計金額: {total_price_display}円")
     
